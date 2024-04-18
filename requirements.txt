@@ -1,6 +1,6 @@
 flask
 flask-sqlalchemy
-flask_restful
+flask-restful
 flask_security-too
 flask-excel
 flask-caching
