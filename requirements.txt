@@ -12,4 +12,3 @@ flask-sse
 gunicorn
 gevent
 matplotlib
-bcrypt
