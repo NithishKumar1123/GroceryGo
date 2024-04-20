@@ -14,4 +14,4 @@ fi
 # Activate virtual env
 source venv/bin/activate
 cd /home/site/wwwroot
-gunicorn --bind 127.0.0.1:33501 app:app
+gunicorn --bind 0.0.0.0:8000 app:app
