@@ -1,10 +1,5 @@
-from flask import request, redirect, render_template
 from flask import current_app as app
-from application.jobs import tasks
-from application.data.database import db
-from application.data.models import User
-
-#APP
+from flask import render_template
 
 @app.route("/")
 def home():
@@ -13,7 +8,6 @@ def home():
 @app.route("/manager")
 def manager():
     return render_template("manager.html"), 200
-
 
 @app.route("/admin")
 def admin():
