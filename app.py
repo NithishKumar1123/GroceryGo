@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_restful import Api
+# from flask_restful import Api
 from application.config import Config
 from application.data.database import db
 from flask_security import Security, SQLAlchemySessionUserDatastore
