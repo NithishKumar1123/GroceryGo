@@ -7,4 +7,5 @@ Flask-Caching==2.1.0
 email-validator==2.1.0.post1
 httplib2==0.22.0
 matplotlib==3.7.0
+gunicorn
 bcrypt==4.0.1
