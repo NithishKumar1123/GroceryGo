@@ -13,5 +13,5 @@ fi
 
 # Activate virtual env
 source venv/bin/activate
-python app.py
-deactivate
+cd /home/site/wwwroot
+gunicorn --bind 0.0.0.0:5000 app:application
