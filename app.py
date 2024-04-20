@@ -1,43 +1,25 @@
-import os
-from flask import Flask, render_template
-from flask_restful import Api, Resource
+from flask import Flask
+from flask_restful import Api
 from application.config import Config
 from application.data.database import db
-from application.jobs import workers
 from flask_security import Security, SQLAlchemySessionUserDatastore
 from application.data.models import User, Role
-# from flask_sse import sse
-import flask_excel as excel
 
-app = None
 api = None
-celery = None
+app = None
 
 def create_app():
     app = Flask(__name__, template_folder = 'templates')
     app.config.from_object(Config)
     db.init_app(app)
     api = Api(app)
-    excel.init_excel(app)
-    app.app_context().push()
-    celery = None
-    # celery = workers.celery
-    # celery.conf.update(
-    #     broker_url = app.config["CELERY_BROKER_URL"],
-    #     result_backend = app.config["CELERY_RESULT_BACKEND"],
-    #     timezone = app.config["CELERY_TIMEZONE"],
-    #     broker_connection_retry_on_startup = app.config["CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP"]
-    # )
-    # celery.Task = workers.ContextTask
     app.app_context().push()
     user_datastore = SQLAlchemySessionUserDatastore(db.session, User, Role)
     security = Security(app, user_datastore)
     app.app_context().push()
-    return app, api, celery
+    return app, api
 
-app, api, celery = create_app()
-
-# app.register_blueprint(sse, url_prefix = '/stream')
+app, api = create_app()
 
 from application.controller.controller import *
 
